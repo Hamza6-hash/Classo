@@ -5,6 +5,7 @@
   import { enhance } from "$app/forms";
   import Alert from "../../../components/Alert.svelte";
   import RoomForm from "../../../components/RoomForm.svelte";
+  import { goto } from "$app/navigation";
 
   let showForm = false; // this will show the create room form
   let alert = false; // message alert for unexpected form behaviour

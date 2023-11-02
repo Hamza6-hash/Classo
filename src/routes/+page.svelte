@@ -3,7 +3,6 @@
   let email = "";
   let password = "";
   import { goto } from "$app/navigation";
-  import "../app.css";
 
   async function createAcc() {
     try {

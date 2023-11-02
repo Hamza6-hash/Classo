@@ -31,8 +31,8 @@ export async function POST(event) {
     }
 }
 
-export function DELETE(event) {
-    event.cookies.delete("sessionId");
+export async function DELETE(event) {
+    await event.cookies.delete("sessionId");
     console.log("hit");
     return json("logout successfully", { status: 200 })
 }
