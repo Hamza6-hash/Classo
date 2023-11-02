@@ -37,3 +37,6 @@ You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 # Classo
+
+Manage Five classes in just a simple way from Upload Test to Managing Student Attendance and much more
+is still under development so support and suggestion always appreciated 
