@@ -70,6 +70,7 @@ export const actions = {
             student_name: student_name,
             enroll_no: rollNo,
             obtained_marks: correctAnswersCount,
+            totalMarks: userQuestions.length
         }
 
         // pushing the user to the students array and saving it in the database
@@ -88,11 +89,4 @@ export const actions = {
 
         return { marks: correctAnswersCount, student_name }
     },
-
-    studentDetails: async ({ request, params }) => {
-        const { userId, id } = params;
-        const user = await Classroom.findById(userId);
-        const classroom = await user.classroom.filter(classs => classs._id.equals(id));
-        // classroom
-    }
 }

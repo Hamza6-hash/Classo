@@ -1,13 +1,10 @@
 <script>
-  // import { onMount, onDestroy } from "svelte";
-  // import Cookies from "universal-cookie";
-  import { enhance } from "$app/forms";
   import Alert from "../../../../../components/Alert.svelte";
-  import StudentFillForm from "../../../../../components/StudentFillForm.svelte";
 
   export let data;
   export let form;
 
+  // handle unexpected behaviour of submitted form
   let alertforKey = false;
   let alertRollExist = false;
   let alertForMissingField = false;
@@ -22,59 +19,21 @@
     alertForMissingField = true;
   }
 
-  // const limitTime = data.classroom?.testTo;
-  // let remainingTime = limitTime;
-  // console.log(limitTime);
-  // const countdownInterval = setInterval(() => {
-  //   if (remainingTime == 0) {
-  //     remainingTime -= -1;
-  //     console.log("Remainging Time: ", remainingTime);
-  //   } else {
-  //     clearInterval(countdownInterval);
-  //     data.classroom.isActive = false;
-  //   }
-  // }, 1000);
-  const newTestToDate = new Date(data.classroom?.testTo);
+  let newTestToDate = new Date(data.classroom?.testTo);
   let remainingTime = Math.floor(newTestToDate - new Date() / 1000);
 
+  // upadte the remaining time for user display (UI)
   function updateRemainingTime() {
     remainingTime = Math.floor((newTestToDate - new Date()) / 1000);
   }
 
-  const countdownInterval = setInterval(updateRemainingTime, 1000);
-  // if (countdownInterval === 0) {
-  //   data.classroom.isActive = false;
-  // }
-
-  // let disablePage = false;
-  // let elapsedTime = 0;
-
-  // const cookies = new Cookies();
-  // const cookieName = "elapsedTime";
-
-  // Check if there is a stored elapsed time cookie
-  // const storedElapsedTime = cookies.get(cookieName);
-  // if (storedElapsedTime) {
-  //   elapsedTime = parseFloat(storedElapsedTime);
-  // }
-
-  // onMount(() => {
-  //   const startTime = new Date().getTime() - elapsedTime * 1000;
-
-  //   const timer = setInterval(() => {
-  //     elapsedTime = (new Date().getTime() - startTime) / 1000;
-  //     cookies.set(cookieName, elapsedTime.toString(), { maxAge: 10 }); // 5 seconds
-
-  //     if (elapsedTime >= 10) {
-  //       clearInterval(timer);
-  //       disablePage = true;
-  //     }
-  //   }, 1000);
-  // });
-
-  // onDestroy(() => {
-  //   cookies.remove(cookieName);
-  // });
+  // funtion to decrement the time
+  const countdownInterval = setInterval(() => {
+    updateRemainingTime();
+    if (remainingTime <= 0) {
+      clearInterval(countdownInterval); // Clear the countdownInterval
+    }
+  }, 1000);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -95,27 +54,18 @@
   <title>Classroom {data?.classroom?.classroom_name}</title>
 </svelte:head>
 
-<StudentFillForm />
-
-{#if new Date() == newTestToDate}
+{#if remainingTime <= 0 || !data.classroom.isActive}
   <h1 class="text-lg font-medium">Time up your page has been disabled</h1>
 {:else if data.classroom.isActive}
   <!-- {:else if data.classroom.} -->
   <div class="p-10 text-black text-xl">
-    <div class="card flex flex-col gap-4">
+    <div class="testCard flex flex-col gap-4">
       <h1 class="text-2xl font-bold">
         Class {data?.classroom?.classroom_name}
       </h1>
       <h1 class="text-2xl font-bold">
-        <!-- {#if remainingTime > 0} -->
         Class {Math.floor(remainingTime / 60)}:{remainingTime % 60}
-        <!-- {:else}
-          Time's up!
-        {/if} -->
       </h1>
-      <!-- <h1 class="text-2xl font-bold">
-        Class {Math.floor(remainingTime / 60)}:{remainingTime % 60}
-      </h1> -->
       <h1>
         {form?.marks
           ? `You have got ${form?.marks} out of ${data?.classroom?.mcqs?.length} marks`
@@ -127,6 +77,35 @@
         action="?/answers"
         method="post"
       >
+        <label for="FirstName">
+          Full Name:
+          <input
+            id="FirstName"
+            type="text"
+            name="student_name"
+            class="border-b-3 border-black h-8 p-2 focus:outline-none"
+          />
+        </label>
+        <br />
+        <label for="Enrollment number">
+          Enrollment number:
+          <input
+            type="text"
+            id="Enrollment number"
+            name="rollNo"
+            class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600"
+          />
+        </label>
+        <br />
+        <label for="key">
+          Secret key:
+          <input
+            type="text"
+            id="key"
+            name="key"
+            class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600"
+          />
+        </label>
         <div>
           <div class="flex flex-col gap-4 mt-4 font-medium">
             <center>
@@ -182,12 +161,9 @@
 {/if}
 
 <style>
-  .card {
+  .testCard {
     width: 99%;
     padding: 20px;
-    /* background-color: rgba(40, 40, 40, 0.8);
-    color: #ffffff; */
-    /* background-color: rgba(40, 40, 40, 0.8); */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
@@ -200,7 +176,6 @@
     height: 0.75rem;
     background-color: blue;
     border-radius: 50%;
-    /* margin: 50%; */
     padding: 50%;
   }
 </style>

@@ -1,4 +1,6 @@
 <script>
+  import { enhance } from "$app/forms";
+
   export let showForm;
 </script>
 
@@ -51,7 +53,8 @@
     </g></svg
   >
   <form
-    action="?/createRoom"
+    use:enhance
+    action="?/addStudentMarks"
     method="post"
     class="flex flex-col gap-4 w-96 card z-40"
   >
@@ -59,19 +62,31 @@
     <input
       type="text"
       class="border-b-2 bg-black h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
-      placeholder="Add name without classroom keyword"
-      name="classroomName"
+      placeholder="Student Name"
+      name="studentName"
     />
     <input
       type="text"
       class="border-b-2 bg-black h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
-      placeholder="Secret Key"
-      name="key"
+      placeholder="Enrollment Number"
+      name="rollNo"
+    />
+    <input
+      type="text"
+      class="border-b-2 bg-black h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
+      placeholder="Obtained Marks"
+      name="obtainedMarks"
+    />
+    <input
+      type="text"
+      class="border-b-2 bg-black h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
+      placeholder="Total Marks"
+      name="totalMarks"
     />
 
     <button
       class="bg-purple-500 p-2 rounded-md hover:bg-purple-600"
-      formaction="?/createRoom"
+      formaction="?/addStudentMarks"
       on:click={() => {
         setTimeout(() => {
           showForm = false;

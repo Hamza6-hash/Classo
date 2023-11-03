@@ -38,7 +38,7 @@
 </svelte:head>
 
 <!-- Navbar -->
-<nav class="flex justify-between p-8">
+<nav class={`flex justify-between p-8 ${showForm ? "blur-sm" : ""}`}>
   <button>Home</button>
   <div class="flex gap-4">
     <button
@@ -57,7 +57,7 @@
     <div class={`${showForm ? "blur-sm h-32" : ""}`}>
       <div class="px-10 py-4">
         {#each data.user.classroom as classroom (classroom._id)}
-          <div class="card mt-10 inline-block mr-6">
+          <div class="classCard mt-10 inline-block mr-6">
             <a href={`/classrooms/${data.user._id}/classroom/${classroom._id}`}>
               <h1 class="text-2xl font-medium">
                 Classroom {classroom.classroom_name} -
@@ -173,7 +173,7 @@
 {/if}
 
 <style>
-  .card {
+  .classCard {
     width: 500px;
     padding: 20px;
     background-color: rgba(40, 40, 40, 0.8);
@@ -183,7 +183,7 @@
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
 
-  .card:hover {
+  .classCard:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
