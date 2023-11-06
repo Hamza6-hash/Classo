@@ -161,7 +161,7 @@
         maximum of 5 classes
       </h1>
       <button
-        class="bg-pink-600 h-10 w-32 text-white mt-6"
+        class="bg-pink-600 h-10 w-32 text-white mt-6 rounded-md hover:bg-pink-500"
         on:click={() => (showForm = true)}>Create Room</button
       >
     </div>

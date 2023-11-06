@@ -35,7 +35,6 @@ export const actions = {
         // console.log(classroom);
         const newStudentObject = {
             student_name: studentName,
-            enroll_no: rollNo,
             obtained_marks: obtainedMarks,
             totalMarks: totalMarks
         }

@@ -22,10 +22,10 @@
             class="px-6 py-4 text-left text-xs leading-4 font-semibold text-gray-600 uppercase tracking-wider"
             >Name</th
           >
-          <th
+          <!-- <th
             class="px-6 py-4 text-left text-xs leading-4 font-semibold text-gray-600 uppercase tracking-wider"
             >Enrollment Number</th
-          >
+          > -->
           <th
             class="px-6 py-4 text-left text-xs leading-4 font-semibold text-gray-600 uppercase tracking-wider"
             >Obtained Marks</th
@@ -47,10 +47,10 @@
               class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"
               >{result.student_name}</td
             >
-            <td
+            <!-- <td
               class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"
               >{result.enroll_no}</td
-            >
+            > -->
             <td
               class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"
               >{result.obtained_marks}</td

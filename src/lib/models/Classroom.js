@@ -22,7 +22,7 @@ const unitTestSchema = new mongoose.Schema({
             classroom_name: {
                 type: String,
                 required: true,
-                unique: true,
+                // unique: true,
             },
 
             secret_key: {
@@ -59,11 +59,6 @@ const unitTestSchema = new mongoose.Schema({
                 {
                     student_name: {
                         type: String,
-                        required: true,
-                    },
-
-                    enroll_no: {
-                        type: Number,
                         required: true,
                     },
 

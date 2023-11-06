@@ -65,12 +65,12 @@
       placeholder="Student Name"
       name="studentName"
     />
-    <input
+    <!-- <input
       type="text"
       class="border-b-2 bg-black h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
       placeholder="Enrollment Number"
       name="rollNo"
-    />
+    /> -->
     <input
       type="text"
       class="border-b-2 bg-black h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
@@ -93,7 +93,7 @@
         }, 100);
       }}
     >
-      Create
+      Add
     </button>
   </form>
 </div>

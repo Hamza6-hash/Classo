@@ -35,14 +35,13 @@
     }
   }, 1000);
 
+  // Shuffling the answers
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
-
-  // Shuffling the answers
   data.classroom.mcqs.forEach((question) => {
     const options = [question?.correctAnswer, ...question?.wrongAnswers];
     shuffleArray(options);
@@ -54,7 +53,9 @@
   <title>Classroom {data?.classroom?.classroom_name}</title>
 </svelte:head>
 
-{#if remainingTime <= 0 || !data.classroom.isActive}
+{#if !data.classroom?.testTo}
+  <h1>No Test</h1>
+{:else if remainingTime <= 0 || !data.classroom.isActive}
   <h1 class="text-lg font-medium">Time up your page has been disabled</h1>
 {:else if data.classroom.isActive}
   <!-- {:else if data.classroom.} -->
@@ -64,7 +65,7 @@
         Class {data?.classroom?.classroom_name}
       </h1>
       <h1 class="text-2xl font-bold">
-        Class {Math.floor(remainingTime / 60)}:{remainingTime % 60}
+        Remaining Time {Math.floor(remainingTime / 60)}:{remainingTime % 60}
       </h1>
       <h1>
         {form?.marks
@@ -77,22 +78,22 @@
         action="?/answers"
         method="post"
       >
-        <label for="FirstName">
-          Full Name:
+        <!-- <label for="FirstName">
+          
           <input
             id="FirstName"
             type="text"
             name="student_name"
             class="border-b-3 border-black h-8 p-2 focus:outline-none"
           />
-        </label>
+        </label> -->
         <br />
-        <label for="Enrollment number">
-          Enrollment number:
+        <label for="studentName">
+          Full Name:
           <input
             type="text"
-            id="Enrollment number"
-            name="rollNo"
+            id="studentName"
+            name="student_name"
             class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600"
           />
         </label>
@@ -114,29 +115,34 @@
               </h1>
             </center>
             {#each data?.classroom?.mcqs as question, questionIndex}
+              <!-- {@debug questionIndex} -->
               <input
                 type="text"
                 hidden
                 name="question"
-                value={question?.question}
+                value={question?._id}
+                id={question?._id}
               />
-              <h1>
+              <label for={question?._id}>
                 {question?.question}
-              </h1>
+              </label>
 
               <!-- <select class="border-b focus:border-none" name="answer"> -->
               <!-- <p value="Choose">Choose right answer</p> -->
               <section class="flex gap-10 max-sm:flex-col">
                 {#each question?.shuffledOptions as option, optionIndex}
+                  <!-- {@debug optionIndex} -->
                   <!-- class="appearance-none hover:cursor-pointer w-6 h-6 border border-gray-300 rounded-full checked:bg-blue-500 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500" -->
                   <input
                     class="appearance-none w-6 h-6 border border-gray-300 rounded-full checked:bg-transparent checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="radio"
-                    id={`answer-${optionIndex}`}
-                    name={`answer-${optionIndex}`}
+                    id={`answer-${optionIndex.optionIndex}`}
+                    name={`answer-${optionIndex.optionIndex}`}
                     value={option}
                   />
-                  <label for={`answer-${optionIndex}`}>{option}</label>
+                  <label for={`answer-${optionIndex.optionIndex}`}
+                    >{option}</label
+                  >
                   <!-- <p >{option}</p> -->
                 {/each}
               </section>
