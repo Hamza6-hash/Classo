@@ -9,7 +9,7 @@ const DB_URI = dev ? DEV_DB_URI : PROD_DB_URI
 export const connectDB = async () => {
     try {
         await mongoose.connect(DB_URI);
-        console.log("Connected");
+        console.log("---------Connected to the database successfully--------");
     } catch (error) {
         console.error(error);
     }

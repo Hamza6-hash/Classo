@@ -1,14 +1,18 @@
 <script>
-  let email = "";
-  let password = "";
   import { goto } from "$app/navigation";
   import "../../app.css";
   import Alert from "../../components/Alert.svelte";
+  import Loading from "../../components/Loading.svelte";
 
+  let email = "";
+  let password = "";
   let userNotExistMsg = false;
+  let loading = false;
+  let className = "absolute right-1/3 bottom-44";
 
   async function loginUser() {
     try {
+      loading = true;
       const res = await fetch("http://localhost:5173/api/login", {
         method: "POST",
         headers: {
@@ -17,7 +21,10 @@
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      if (res.ok) goto(`/classrooms/${data._id}`);
+      if (res.ok) {
+        // loading = false;
+        goto(`/classrooms/${data._id}`);
+      }
       if (res.status === 404) {
         console.log("hit");
         userNotExistMsg = true;
@@ -55,8 +62,11 @@
     <button
       on:click={loginUser}
       class="bg-blue-800 text-white p-2 rounded-md hover:bg-blue-900"
-      >Login</button
-    >
+      >Login
+      {#if loading}
+        <Loading {className} />
+      {/if}
+    </button>
   </form>
 </div>
 

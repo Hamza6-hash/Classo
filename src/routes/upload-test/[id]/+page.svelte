@@ -2,8 +2,8 @@
   export let data;
 
   import { enhance } from "$app/forms";
-  import TestTimeForm from "../../../components/TestTimeForm.svelte";
-  import UploadMcqsForm from "../../../components/UploadMcqsForm.svelte";
+  import TestTimeForm from "./TestTimeForm.svelte";
+  import UploadMcqsForm from "./UploadMcqsForm.svelte";
 </script>
 
 <svelte:head>

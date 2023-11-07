@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import Classroom from "../../../lib/models/Classroom.js"
 import { connectDB } from "$lib/index.js"
 
@@ -71,8 +71,14 @@ export const actions = {
             const testDate = data.get("startTime");
             let fromm = data.get("from");
             let to = data.get("to");
-            // new Date(fromm);
-            // new Date(to);
+
+            // return fail true if no form data
+            if (!testDate || !fromm || !to) return fail(404, {
+                testDate,
+                fromm,
+                to,
+            }, { missing: true });
+
             const user = await Classroom.findById(userId);
             const classroom = user.classroom.filter(classs => classs._id.equals(params.id));
 

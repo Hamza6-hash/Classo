@@ -1,11 +1,16 @@
 <script>
+  import { goto } from "$app/navigation";
+  import Loading from "../components/Loading.svelte";
+
   let username = "";
   let email = "";
   let password = "";
-  import { goto } from "$app/navigation";
+  let loading = false;
+  let className = "absolute right-1/3 top-96";
 
   async function createAcc() {
     try {
+      loading = true;
       const res = await fetch("http://localhost:5173/api", {
         method: "POST",
         headers: {
@@ -55,8 +60,11 @@
     <button
       on:click={createAcc}
       class="bg-blue-800 text-white p-2 rounded-md hover:bg-blue-900"
-      >Register</button
-    >
+      >Register
+      {#if loading}
+        <Loading {className} />
+      {/if}
+    </button>
   </form>
 </div>
 
