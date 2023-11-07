@@ -1,5 +1,5 @@
 <script>
-  import AddStudentMarks from "../../../components/AddStudentMarks.svelte";
+  import AddStudentMarks from "./AddStudentMarks.svelte";
 
   export let data;
   let showForm = false;

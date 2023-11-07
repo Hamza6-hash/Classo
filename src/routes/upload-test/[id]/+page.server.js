@@ -15,12 +15,12 @@ export async function load({ params, cookies }) {
         user: seralizedData,
         id: sessionId
     }
-
 }
 
 export const actions = {
     uploadMcqs: async ({ request, params, cookies }) => {
         try {
+
             const data = await request.formData();
             const { id } = params;
             const sessionId = cookies.get("sessionId");
@@ -29,6 +29,9 @@ export const actions = {
             const option_B = data.get("b");
             const option_C = data.get("c");
             const option_Correct = data.get("correctValue");
+
+            connectDB();
+
             const userClass = await Classroom.findById(sessionId);
             const classroom = userClass.classroom.filter((classroom) => classroom._id.equals(id));
             const newMCQ = {
@@ -47,6 +50,7 @@ export const actions = {
     deletePrevMcqs: async ({ cookies, params }) => {
         try {
             const userId = cookies.get("sessionId");
+            connectDB();
             const user = await Classroom.findById(userId);
             const classroom = user.classroom.filter(classs => classs._id.equals(params.id))
 
@@ -66,6 +70,7 @@ export const actions = {
 
     totalTimeTest: async ({ cookies, request, params }) => {
         try {
+            connectDB();
             const userId = cookies.get("sessionId");
             const data = await request.formData();
             const testDate = data.get("startTime");

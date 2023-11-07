@@ -31,8 +31,8 @@
     name="to"
   />
   <br />
-  <button class="h-10 bg-red-500 w-32 rounded-md" formaction="?/totalTimeTest"
-    >Submit</button
-  >
+  <button class="h-10 bg-red-500 w-32 rounded-md" formaction="?/totalTimeTest">
+    Submit
+  </button>
 </form>
 <!-- </div> -->

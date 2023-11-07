@@ -45,6 +45,7 @@
 
   <button
     class="bg-purple-500 p-2 rounded-md hover:bg-purple-600"
-    formaction="?/uploadMcqs">Upload</button
-  >
+    formaction="?/uploadMcqs"
+    >Upload
+  </button>
 </form>

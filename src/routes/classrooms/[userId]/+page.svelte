@@ -137,6 +137,7 @@
                       ? "w-18 h-10 px-1 bg-red-700 hover:bg-red-800"
                       : "w-18 h-10 px-3 bg-green-700 hover:bg-green-800"
                   } text-white `}
+                  on:click={() => window.location.reload()}
                 >
                   {classroom.isActive ? "In Active" : "Active"}
                 </button>
