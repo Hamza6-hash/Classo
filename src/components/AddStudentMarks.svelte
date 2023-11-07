@@ -58,7 +58,7 @@
     method="post"
     class="flex flex-col gap-4 w-96 card z-40"
   >
-    <h1>Create a classroom</h1>
+    <h1>Add Student Marks</h1>
     <input
       type="text"
       class="border-b-2 bg-black h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
