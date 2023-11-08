@@ -6,7 +6,7 @@ export async function load({ params, cookies }) {
     const sessionId = cookies.get("sessionId");
     const { id } = params;
     if (!sessionId) throw redirect(303, "/login");
-    connectDB();
+    // connectDB();
     const userClass = await Classroom.findById(sessionId);
     const classroom = userClass.classroom.filter((classroom) => classroom._id.equals(id));
     // console.log(classroom);
@@ -30,7 +30,9 @@ export const actions = {
             const option_C = data.get("c");
             const option_Correct = data.get("correctValue");
 
-            connectDB();
+            console.log(option_A, option_B, option_C, option_Correct);
+
+            // connectDB();
 
             const userClass = await Classroom.findById(sessionId);
             const classroom = userClass.classroom.filter((classroom) => classroom._id.equals(id));
@@ -50,7 +52,7 @@ export const actions = {
     deletePrevMcqs: async ({ cookies, params }) => {
         try {
             const userId = cookies.get("sessionId");
-            connectDB();
+            // connectDB();
             const user = await Classroom.findById(userId);
             const classroom = user.classroom.filter(classs => classs._id.equals(params.id))
 
@@ -70,7 +72,7 @@ export const actions = {
 
     totalTimeTest: async ({ cookies, request, params }) => {
         try {
-            connectDB();
+            // connectDB();
             const userId = cookies.get("sessionId");
             const data = await request.formData();
             const testDate = data.get("startTime");

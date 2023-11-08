@@ -5,7 +5,7 @@ import { fail } from "@sveltejs/kit";
 
 export async function load({ params }) {
     try {
-        connectDB()
+        // connectDB()
         const { id, userId } = params;
         const userClass = await Classroom.findById(userId);
         const classroomIndex = userClass.classroom.filter((classroom) => classroom._id.equals(id));
@@ -19,7 +19,7 @@ export async function load({ params }) {
 export const actions = {
     answers: async ({ request, params }) => {
         try {
-            connectDB();
+            // connectDB();
             // Receving user and class id from the url
             const { userId, id } = params;
 
@@ -40,7 +40,17 @@ export const actions = {
 
             // getting all the question and answers submitted by the user 
             const userQuestions = data.getAll("question"); // Assuming question is an array
-            const userAnswers = data.getAll("answer");
+            console.log(userQuestions.length);
+
+            let questionIndex = 0;
+
+            for (let i = 0; i < userQuestions.length; i++) {
+                questionIndex += 1;
+                console.log(questionIndex);
+                const userAnswers = data.getAll(`answer-${questionIndex}`);
+                console.log(userAnswers);
+            }
+
 
             // Finding the user and user specefic classroom
             const userClassroom = await Classroom.findById(userId);

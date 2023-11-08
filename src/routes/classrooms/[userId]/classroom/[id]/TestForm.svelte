@@ -1,0 +1,97 @@
+<script>
+  export let dataProps;
+</script>
+
+<form
+  class="flex flex-col gap-2 font-semibold"
+  action="?/answers"
+  method="post"
+>
+  <!-- <label for="FirstName">
+          
+          <input
+            id="FirstName"
+            type="text"
+            name="student_name"
+            class="border-b-3 border-black h-8 p-2 focus:outline-none"
+          />
+        </label> -->
+  <br />
+  <label for="studentName">
+    Full Name:
+    <input
+      type="text"
+      id="studentName"
+      name="student_name"
+      class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600"
+    />
+  </label>
+  <br />
+  <label for="key">
+    Secret key:
+    <input
+      type="text"
+      id="key"
+      name="key"
+      class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600"
+    />
+  </label>
+  <div>
+    <div class="flex flex-col gap-4 mt-4 font-medium">
+      <center>
+        <h1 class="text-lg font-bold">
+          Choose the correct options each questions carry equals marks
+        </h1>
+      </center>
+      {#each dataProps?.classroom?.mcqs as question, questionIndex}
+        <!-- {@debug questionIndex} -->
+        <input
+          type="text"
+          hidden
+          name="question"
+          value={question?._id}
+          id={question?._id}
+        />
+        <label for={question?._id}>
+          {question?.question}
+        </label>
+
+        <!-- <select class="border-b focus:border-none" name="answer"> -->
+        <!-- <p value="Choose">Choose right answer</p> -->
+        <section class="flex gap-10 max-sm:flex-col">
+          {#each question?.shuffledOptions as option, optionIndex}
+            <!-- {@debug optionIndex} -->
+            <!-- class="appearance-none hover:cursor-pointer w-6 h-6 border border-gray-300 rounded-full checked:bg-blue-500 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500" -->
+            <input
+              class="appearance-none w-6 h-6 border border-gray-300 rounded-full checked:bg-transparent checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="radio"
+              id={`answer-${optionIndex.optionIndex}`}
+              name={`answer-${questionIndex}`}
+              value={option}
+            />
+            <label for={`answer-${optionIndex.optionIndex}`}>{option}</label>
+            <!-- <p >{option}</p> -->
+          {/each}
+        </section>
+
+        <!-- </select> -->
+      {/each}
+      <button
+        formaction="?/answers"
+        class="bg-red-400 h-10 rounded-lg mt-4 hover:bg-red-500">Submit</button
+      >
+    </div>
+  </div>
+</form>
+
+<style>
+  input[type="radio"]:checked::before {
+    content: "";
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: blue;
+    border-radius: 50%;
+    padding: 50%;
+  }
+</style>

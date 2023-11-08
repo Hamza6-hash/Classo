@@ -10,7 +10,7 @@ export async function load({ cookies, params }) {
     const { id } = params;
     console.log(userId);
     if (!userId) throw redirect(303, "/login")
-    connectDB();
+    // connectDB();
     const user = await Classroom.findById(userId);
     const classroom = user.classroom.filter((classroom) => classroom._id.equals(id));
     const studentsResult = classroom[0];
