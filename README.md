@@ -38,5 +38,8 @@ You can preview the production build with `npm run preview`.
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 # Classo
 
-Manage Five classes in just a simple way from Upload Test to Managing Student Attendance and much more
-is still under development so support and suggestion always appreciated 
+Create up to five classes and upload test to them just share a link with a simple button to the participants and give them the secret key, don't need to check the test its all auto participant will get the marks on test form submission
+
+Give date, start time and end time for user after that test form will disappear and user will consider as fail
+
+Suggestion always appreciated feel free to give one
