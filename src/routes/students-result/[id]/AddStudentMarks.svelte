@@ -27,7 +27,7 @@
       stroke-linecap="round"
       stroke-linejoin="round"
     /><g id="SVGRepo_iconCarrier">
-      <title>cross-circle</title> <desc>Created with Sketch Beta.</desc>
+      <title /> <desc>Created with Sketch Beta.</desc>
       <defs />
       <g
         id="Page-1"

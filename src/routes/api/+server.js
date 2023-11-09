@@ -1,6 +1,7 @@
 import Classroom from '../../lib/models/Classroom.js';
 import { json, error } from '@sveltejs/kit';
 import { connectDB } from '../../lib/index.js';
+import bcrypt from "bcrypt"
 
 
 export async function POST(event) {
@@ -8,10 +9,12 @@ export async function POST(event) {
         connectDB();
         const { username, email, password } = await event.request.json();
 
+        const hashPassword = bcrypt.hashSync(password, 10);
+
         const newUser = new Classroom({
             teacher_name: username,
             email: email,
-            password: password
+            password: hashPassword
         })
 
         const savedUser = await newUser.save();
@@ -33,6 +36,5 @@ export async function POST(event) {
 
 export async function DELETE(event) {
     await event.cookies.delete("sessionId");
-    console.log("hit");
     return json("logout successfully", { status: 200 })
 }

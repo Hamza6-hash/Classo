@@ -7,15 +7,6 @@
   action="?/answers"
   method="post"
 >
-  <!-- <label for="FirstName">
-          
-          <input
-            id="FirstName"
-            type="text"
-            name="student_name"
-            class="border-b-3 border-black h-8 p-2 focus:outline-none"
-          />
-        </label> -->
   <br />
   <label for="studentName">
     Full Name:
@@ -49,15 +40,13 @@
           type="text"
           hidden
           name="question"
-          value={question?._id}
+          value={question?.question}
           id={question?._id}
         />
         <label for={question?._id}>
           {question?.question}
         </label>
 
-        <!-- <select class="border-b focus:border-none" name="answer"> -->
-        <!-- <p value="Choose">Choose right answer</p> -->
         <section class="flex gap-10 max-sm:flex-col">
           {#each question?.shuffledOptions as option, optionIndex}
             <!-- {@debug optionIndex} -->
@@ -70,11 +59,8 @@
               value={option}
             />
             <label for={`answer-${optionIndex.optionIndex}`}>{option}</label>
-            <!-- <p >{option}</p> -->
           {/each}
         </section>
-
-        <!-- </select> -->
       {/each}
       <button
         formaction="?/answers"

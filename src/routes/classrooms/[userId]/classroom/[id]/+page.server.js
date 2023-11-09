@@ -40,17 +40,18 @@ export const actions = {
 
             // getting all the question and answers submitted by the user 
             const userQuestions = data.getAll("question"); // Assuming question is an array
-            console.log(userQuestions.length);
+            // console.log(userQuestions.length);
 
+            // declare an empty array to put (push) user answers later
+            let userAnswers = [];
+
+            // inrement each time to match the user answers and get the answers from the form by name
             let questionIndex = 0;
-
             for (let i = 0; i < userQuestions.length; i++) {
+                let userAnswer = data.get(`answer-${questionIndex}`);
                 questionIndex += 1;
-                console.log(questionIndex);
-                const userAnswers = data.getAll(`answer-${questionIndex}`);
-                console.log(userAnswers);
+                userAnswers.push(userAnswer);
             }
-
 
             // Finding the user and user specefic classroom
             const userClassroom = await Classroom.findById(userId);
@@ -80,8 +81,6 @@ export const actions = {
                 }
             }
 
-            console.log(correctAnswersCount);
-
             // creating a new object of the user
             const newStudentObject = {
                 student_name: student_name,
@@ -101,8 +100,6 @@ export const actions = {
                 // console.log(numString);
                 return { marks: numString }
             }
-
-            // console.log("String: ", correctAnswersCount);
 
             return { marks: correctAnswersCount, student_name }
         } catch (error) {

@@ -1,6 +1,7 @@
 import { json, error } from "@sveltejs/kit";
 import Classroom from "../../../lib/models/Classroom";
 import { connectDB } from "../../../lib";
+import bcrypt from "bcrypt";
 
 
 export async function POST({ request, cookies }) {
@@ -11,7 +12,8 @@ export async function POST({ request, cookies }) {
         const user = await Classroom.findOne({ email: email });
         if (!user) return json("User not exists with that email", { status: 404 });
 
-        const isMatch = password === user.password;
+        const isMatch = bcrypt.compareSync(password, user.password);
+
         if (!isMatch) return json("Invalid Credentials", { status: 400 });
         const id = user._id;
         const userId = new String(id);
