@@ -10,35 +10,45 @@
   class="flex w-full text-white flex-col gap-4 z-40"
 >
   Uploaded Mcqs: {mcqsLength}
-  <input
-    type="text"
+  <!-- placeholder="Write your question here?" -->
+  <label for="qst">Write your question?</label>
+  <textarea
+    cols="30"
+    rows="20"
     placeholder="Write your question here?"
-    class="border-b text-white bg-gray-800 h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
+    class="text-white border-2 bg-gray-800 h-32 max-sm:w-56 p-2 focus:outline-none border-red-600 focus:border-green-500 overflow-hidden"
     name="question"
+    id="qst"
   />
-  <div>
+
+  <!-- <textare
+    type="text"
+    class="border-b text-white bg-gray-800 h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
+    name="question"></textare
+  > -->
+  <div class="flex-col flex w-56">
     A.
     <input
       type="text"
-      class="border-b text-white bg-gray-800 h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
+      class="border-b-2 text-white bg-gray-800 h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
       name="a"
     />
     B.
     <input
       type="text"
       name="b"
-      class="border-b text-white bg-gray-800 h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
+      class="border-b-2 text-white bg-gray-800 h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
     />
     C.
     <input
       type="text"
       name="c"
-      class="border-b text-white bg-gray-800 h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
+      class="border-b-2 text-white bg-gray-800 h-8 p-2 focus:outline-none border-red-600 focus:border-green-500"
     />
     Correct Value.
     <input
       type="text"
-      class="border-b bg-gray-800 h-8 p-2 w-36 focus:outline-none border-red-600"
+      class="border-b-2 bg-gray-800 h-8 p-2 focus:outline-none border-red-600"
       name="correctValue"
     />
   </div>

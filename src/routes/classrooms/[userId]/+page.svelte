@@ -52,7 +52,7 @@
 </nav>
 
 <!-- UI -->
-<div class="text-black">
+<div>
   {#if data.user}
     <div class={`${showForm ? "blur-sm h-32" : ""}`}>
       <div class="px-10 py-4">
@@ -72,77 +72,81 @@
             <hr />
 
             <!-- Delete room form -->
-            <div class="flex justify-center items-center space-x-4 mt-4">
-              <form
-                class="py-2"
-                action="?/deleteRoom"
-                method="post"
-                use:enhance
-              >
-                <input
-                  type="text"
-                  name="classroomId"
-                  hidden
-                  value={classroom._id}
-                />
+            <section class="flex items-center gap-4">
+              <div class="flex justify-center items-center space-x-4 mt-4">
+                <form
+                  class="py-2"
+                  action="?/deleteRoom"
+                  method="post"
+                  use:enhance
+                >
+                  <input
+                    type="text"
+                    name="classroomId"
+                    hidden
+                    value={classroom._id}
+                  />
 
-                <button
-                  formaction="?/deleteRoom"
-                  class="rounded-md bg-cyan-900 h-10 w-20 text-white hover:bg-red-700"
-                >
-                  Delete
-                </button>
-                <a
-                  class="rounded-md bg-blue-900 px-2 py-2 text-white hover:bg-cyan-700"
-                  href={`/upload-test/${classroom._id}`}
-                >
-                  Upload Test
-                </a>
-              </form>
+                  <button
+                    formaction="?/deleteRoom"
+                    class="rounded-md bg-cyan-900 h-10 w-20 text-white hover:bg-red-700"
+                  >
+                    Delete
+                  </button>
+                  <a
+                    class="rounded-md bg-blue-900 px-2 py-2 text-white hover:bg-cyan-700"
+                    href={`/upload-test/${classroom._id}`}
+                  >
+                    Upload Test
+                  </a>
+                </form>
+              </div>
 
               <!-- Share button -->
-              <button
-                class="rounded-md bg-cyan-600 h-10 w-20 text-white hover:bg-cyan-700"
-                on:click={() => {
-                  if (navigator.share) {
-                    navigator.share({
-                      title: `Join classroom ${classroom.classroom_name}`,
-                      url: `/classrooms/${data.user._id}/classroom/${classroom._id}`,
-                    });
-                  }
-                }}
-              >
-                Share
-              </button>
-
-              <a
-                class="rounded-md bg-purple-800 px-4 py-2 text-white hover:bg-purple-900"
-                href={`/students-result/${classroom._id}`}
-              >
-                Result
-              </a>
-
-              <!-- Activating and deactivating the classroom -->
-              <form action="?/activeClass" method="post" use:enhance>
-                <input
-                  type="text"
-                  value={classroom._id}
-                  hidden
-                  name="classroomId"
-                />
+              <div class="flex items-center mt-1 gap-4">
                 <button
-                  formaction="?/activeClass"
-                  class={`rounded-md  ${
-                    classroom.isActive
-                      ? "w-18 h-10 px-1 bg-red-700 hover:bg-red-800"
-                      : "w-18 h-10 px-3 bg-green-700 hover:bg-green-800"
-                  } text-white `}
-                  on:click={() => window.location.reload()}
+                  class="rounded-md bg-cyan-600 h-10 w-20 text-white hover:bg-cyan-700"
+                  on:click={() => {
+                    if (navigator.share) {
+                      navigator.share({
+                        title: `Join classroom ${classroom.classroom_name}`,
+                        url: `/classrooms/${data.user._id}/classroom/${classroom._id}`,
+                      });
+                    }
+                  }}
                 >
-                  {classroom.isActive ? "In Active" : "Active"}
+                  Share
                 </button>
-              </form>
-            </div>
+
+                <a
+                  class="rounded-md bg-purple-800 px-4 py-2 text-white hover:bg-purple-900"
+                  href={`/students-result/${classroom._id}`}
+                >
+                  Result
+                </a>
+
+                <!-- Activating and deactivating the classroom -->
+                <form action="?/activeClass" method="post" use:enhance>
+                  <input
+                    type="text"
+                    value={classroom._id}
+                    hidden
+                    name="classroomId"
+                  />
+                  <button
+                    formaction="?/activeClass"
+                    class={`rounded-md  ${
+                      classroom.isActive
+                        ? "w-18 h-10 px-1 bg-red-700 hover:bg-red-800"
+                        : "w-18 h-10 px-3 bg-green-700 hover:bg-green-800"
+                    } text-white `}
+                    on:click={() => window.location.reload()}
+                  >
+                    {classroom.isActive ? "In Active" : "Active"}
+                  </button>
+                </form>
+              </div>
+            </section>
           </div>
         {/each}
       </div>
@@ -175,7 +179,7 @@
 
 <style>
   .classCard {
-    width: 500px;
+    /* width: 500px; */
     padding: 20px;
     background-color: rgba(40, 40, 40, 0.8);
     color: #ffffff;
@@ -183,6 +187,11 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
+  /* @media screen and (min-width) {
+    .cardClass {
+      width: 300px;
+    }
+  } */
 
   .classCard:hover {
     transform: scale(1.05);

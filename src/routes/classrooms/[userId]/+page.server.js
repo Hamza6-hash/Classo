@@ -12,7 +12,7 @@ export async function load({ params, cookies }) {
     }
 
     if (sessionId === userId) {
-        connectDB();
+        // connectDB();
         const user = await Classroom.findById(userId);
         const seralizedData = JSON.parse(JSON.stringify(user))
         return { user: seralizedData }

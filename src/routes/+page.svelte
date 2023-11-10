@@ -35,7 +35,7 @@
   class="flex flex-col items-center justify-center h-screen w-full max-sm:min-w-min"
 >
   <h1 class="text-3xl font-medium text-white">Create an account</h1>
-  <form class="flex flex-col gap-4 w-96 mt-3 card">
+  <form class="flex flex-col gap-4 mt-3 card w-4/6 sm:w-1/2 md:w-1/3 p-4">
     <input
       type="text"
       class="input border-b h-8 p-2 outline-none focus:border-green-600 border-red-600"
@@ -70,7 +70,7 @@
 
 <style>
   .card {
-    width: 500px;
+    /* width: 500px; */
     padding: 20px;
     background-color: rgba(40, 40, 40, 0.8);
     /* background-color: #ffffff; */

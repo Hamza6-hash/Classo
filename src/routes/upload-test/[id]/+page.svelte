@@ -11,22 +11,31 @@
 </svelte:head>
 
 <div class="p-20">
-  <h1 class="text-2xl font-medium">
-    Upload Test for Classroom {data.user.classroom_name}
-  </h1>
+  <section class="flex justify-between items-center max-md:flex-col">
+    <h1 class="text-2xl font-medium whitespace-pre-line">
+      Upload Test for Classroom {data.user.classroom_name}
+    </h1>
+    <form action="?/deletePrevMcqs" method="post" use:enhance>
+      <button
+        formaction="?/deletePrevMcqs"
+        class="bg-red-700 p-2 mt-5 text-white rounded-md hover:bg-red-800"
+        >Delete Previous Test</button
+      >
+    </form>
+  </section>
 
-  <div class="flex flex-col items-center text-lg justify-center w-full">
+  <div class="flex flex-col items-center text-lg justify-center w-full mt-2">
     {#if !data.user.testStartDate}
       <TestTimeForm />
     {:else}
       <UploadMcqsForm mcqsLength={data.user.mcqs.length} />
-      <form action="?/deletePrevMcqs" method="post" use:enhance>
+      <!-- <form action="?/deletePrevMcqs" method="post" use:enhance>
         <button
           formaction="?/deletePrevMcqs"
           class="mt-10 bg-red-700 p-2 text-white rounded-md hover:bg-red-800"
           >Delete Previous Test</button
         >
-      </form>
+      </form> -->
       <!-- <a href={`/classrooms/${data.id}`}>
         <button class="mt-10 bg-purple-500 p-2 rounded-md hover:bg-purple-600"
           >Go Back</button
@@ -36,7 +45,7 @@
   </div>
 </div>
 
-<footer class="grid place-content-center absolute right-16 bottom-4">
+<footer class="grid place-content-center">
   <center class="card">
     <h1>Tips:</h1>
     <h1>Don't worry about your options it will be shuffled automatically!</h1>

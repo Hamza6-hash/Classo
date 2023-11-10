@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 
 export async function POST({ request, cookies }) {
     try {
-        connectDB();
+        // connectDB();
         const { email, password } = await request.json();
 
         const user = await Classroom.findOne({ email: email });

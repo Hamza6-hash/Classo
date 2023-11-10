@@ -31,7 +31,7 @@
     <div class="flex flex-col gap-4 mt-4 font-medium">
       <center>
         <h1 class="text-lg font-bold">
-          Choose the correct options each questions carry equals marks
+          Choose the correct options each questions has one marks
         </h1>
       </center>
       {#each dataProps?.classroom?.mcqs as question, questionIndex}
@@ -47,18 +47,22 @@
           {question?.question}
         </label>
 
-        <section class="flex gap-10 max-sm:flex-col">
+        <section class="flex gap-4 max-md:flex-col">
           {#each question?.shuffledOptions as option, optionIndex}
             <!-- {@debug optionIndex} -->
             <!-- class="appearance-none hover:cursor-pointer w-6 h-6 border border-gray-300 rounded-full checked:bg-blue-500 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500" -->
-            <input
-              class="appearance-none w-6 h-6 border border-gray-300 rounded-full checked:bg-transparent checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="radio"
-              id={`answer-${optionIndex.optionIndex}`}
-              name={`answer-${questionIndex}`}
-              value={option}
-            />
-            <label for={`answer-${optionIndex.optionIndex}`}>{option}</label>
+            <div class="flex max-md:flex items-center gap-4">
+              <input
+                class="hover:cursor-pointer appearance-none w-6 h-6 border border-gray-300 rounded-full checked:bg-transparent checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
+                type="radio"
+                id={`answer-${optionIndex.optionIndex}`}
+                name={`answer-${questionIndex}`}
+                value={option}
+              />
+              <label class="text-lg" for={`answer-${optionIndex.optionIndex}`}
+                >{option}</label
+              >
+            </div>
           {/each}
         </section>
       {/each}
