@@ -14,7 +14,7 @@
       type="text"
       id="studentName"
       name="student_name"
-      class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600"
+      class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600 max-sm:w-44"
     />
   </label>
   <br />
@@ -24,7 +24,7 @@
       type="text"
       id="key"
       name="key"
-      class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600"
+      class="border-b border-black h-8 p-2 focus:outline-none focus:border-red-600 max-sm:w-44"
     />
   </label>
   <div>

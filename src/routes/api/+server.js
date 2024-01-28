@@ -6,7 +6,6 @@ import bcrypt from "bcrypt"
 
 export async function POST(event) {
     try {
-        // connectDB();
         const { username, email, password } = await event.request.json();
 
         const hashPassword = bcrypt.hashSync(password, 10);
@@ -27,7 +26,7 @@ export async function POST(event) {
             secure: "httpOnly"
         });
 
-        return json(savedUser);
+        return json(savedUser, { status: 201 });
     } catch (err) {
         console.error(err);
         return error(500, err)

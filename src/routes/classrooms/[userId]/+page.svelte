@@ -29,6 +29,8 @@
       console.error(error);
     }
   }
+
+  console.log("Page.svelte: showForm state: ", showForm);
 </script>
 
 <svelte:head>
@@ -72,7 +74,7 @@
             <hr />
 
             <!-- Delete room form -->
-            <section class="flex items-center gap-4">
+            <section class="flex flex-wrap items-center justify-center gap-4">
               <div class="flex justify-center items-center space-x-4 mt-4">
                 <form
                   class="py-2"
@@ -94,7 +96,7 @@
                     Delete
                   </button>
                   <a
-                    class="rounded-md bg-blue-900 px-2 py-2 text-white hover:bg-cyan-700"
+                    class="rounded-md bg-blue-900 p-3 ml-1 text-white hover:bg-cyan-700"
                     href={`/upload-test/${classroom._id}`}
                   >
                     Upload Test
@@ -103,7 +105,7 @@
               </div>
 
               <!-- Share button -->
-              <div class="flex items-center mt-1 gap-4">
+              <div class="flex justify-center items-center mt-3 gap-4">
                 <button
                   class="rounded-md bg-cyan-600 h-10 w-20 text-white hover:bg-cyan-700"
                   on:click={() => {
@@ -137,12 +139,12 @@
                     formaction="?/activeClass"
                     class={`rounded-md  ${
                       classroom.isActive
-                        ? "w-18 h-10 px-1 bg-red-700 hover:bg-red-800"
-                        : "w-18 h-10 px-3 bg-green-700 hover:bg-green-800"
+                        ? "h-10 w-18 px-1 bg-red-700 hover:bg-red-800"
+                        : "h-10  bg-green-700 hover:bg-green-800"
                     } text-white `}
                     on:click={() => window.location.reload()}
                   >
-                    {classroom.isActive ? "In Active" : "Active"}
+                    {classroom.isActive ? "InActive" : "Active"}
                   </button>
                 </form>
               </div>
@@ -179,19 +181,16 @@
 
 <style>
   .classCard {
-    /* width: 500px; */
+    max-width: 500px;
     padding: 20px;
     background-color: rgba(40, 40, 40, 0.8);
     color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
   }
-  /* @media screen and (min-width) {
-    .cardClass {
-      width: 300px;
-    }
-  } */
 
   .classCard:hover {
     transform: scale(1.05);

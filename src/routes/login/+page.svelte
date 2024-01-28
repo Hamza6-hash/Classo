@@ -66,9 +66,9 @@
       on:click={loginUser}
       class="bg-blue-800 text-white p-2 rounded-md hover:bg-blue-900"
       >Login
-      {#if loading}
+      <!-- {#if loading}
         <Loading {className} />
-      {/if}
+      {/if} -->
     </button>
   </form>
 </div>

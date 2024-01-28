@@ -87,7 +87,7 @@
   .testCard {
     width: 99%;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
   }
