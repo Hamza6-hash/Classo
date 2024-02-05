@@ -11,7 +11,7 @@
   async function createAcc() {
     try {
       loading = true;
-      const res = await fetch("http://localhost:5173/api", {
+      const res = await fetch("/api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
